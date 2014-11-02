@@ -18,19 +18,27 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPartidaNueva
      */
-    
-    
-    
     public VentanaPartidaNueva(Juego juego) {
         initComponents();
-       
-          ArrayList<Jugador> jugadores = juego.getListaJugadores();
-          for (int i=0; i<jugadores.size(); i++){
-              String alias=jugadores.get(i).getAlias();
-              JComoBoxJugadorBlanco.addItem(alias);
-              
-          }
-        
+
+        ArrayList<Jugador> jugadores = juego.getListaJugadores();
+        for (int i = 0; i < jugadores.size(); i++) {
+            Jugador jugadorBlanco = jugadores.get(i);
+            jComboBoxJugadorBlanco.addItem(jugadorBlanco.getAlias());
+
+        }
+
+        Object alias = jComboBoxJugadorBlanco.getSelectedItem().toString();
+        for (int i=0; i< jugadores.size(); i++){
+        if (jugadores.get(i).getAlias().equals(alias))
+            jugadores.remove(jugadores.get(i));
+        } 
+
+        for (int i = 0; i < jugadores.size(); i++) {
+            Jugador jugadorBlanco = jugadores.get(i);
+            jComboBoxJugadorNegro.addItem(jugadorBlanco.getAlias());
+
+        }
       
     }
 
@@ -43,6 +51,8 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jComboBoxPanel = new javax.swing.JComboBox();
@@ -52,14 +62,23 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        JComoBoxJugadorBlanco = new javax.swing.JComboBox();
+        jComboBoxJugadorBlanco = new javax.swing.JComboBox();
         jComboBoxJugadorNegro = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButtonJugar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+
+        jLabel8.setText("Nueva Partida");
+
+        jTextField1.setText("Nueva Partida");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,14 +139,11 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        JComoBoxJugadorBlanco.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        JComoBoxJugadorBlanco.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxJugadorBlanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JComoBoxJugadorBlancoActionPerformed(evt);
+                jComboBoxJugadorBlancoActionPerformed(evt);
             }
         });
-
-        jComboBoxJugadorNegro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setText("Jugador Blanco");
 
@@ -147,7 +163,7 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(32, 32, 32)
-                                .addComponent(JComoBoxJugadorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jComboBoxJugadorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,7 +180,7 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JComoBoxJugadorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxJugadorBlanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -182,7 +198,7 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
 
         jButton2.setText("Volver");
 
-        jLabel8.setText("Nueva Partida");
+        jLabel9.setText("Nueva Partida");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,27 +209,25 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(97, 97, 97)
-                                    .addComponent(jButton2)
-                                    .addGap(40, 40, 40)
-                                    .addComponent(jButtonJugar))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(130, 130, 130)
-                                    .addComponent(jLabel8)))
-                            .addGap(7, 7, 7)))
+                            .addGap(97, 97, 97)
+                            .addComponent(jButton2)
+                            .addGap(40, 40, 40)
+                            .addComponent(jButtonJugar)
+                            .addGap(13, 13, 13)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jLabel9)))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,10 +245,14 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonJugarActionPerformed
 
-    private void JComoBoxJugadorBlancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComoBoxJugadorBlancoActionPerformed
+    private void jComboBoxJugadorBlancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJugadorBlancoActionPerformed
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_JComoBoxJugadorBlancoActionPerformed
+
+    }//GEN-LAST:event_jComboBoxJugadorBlancoActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,16 +284,16 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPartidaNueva().setVisible(true);
+                //new VentanaPartidaNueva().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox JComoBoxJugadorBlanco;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonJugar;
     private javax.swing.JComboBox jComboBoxFichas;
+    private javax.swing.JComboBox jComboBoxJugadorBlanco;
     private javax.swing.JComboBox jComboBoxJugadorNegro;
     private javax.swing.JComboBox jComboBoxPanel;
     private javax.swing.JComboBox jComboBoxTablero;
@@ -287,7 +305,9 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -159,8 +159,8 @@ public class VentanaAltaJugador extends javax.swing.JFrame {
 
         try {
             if (!this.txtNombre.getText().isEmpty() && !this.txtAlias.getText().isEmpty()) {
-                nombre = this.txtNombre.getText();
-                alias = this.txtAlias.getText();
+                nombre = this.txtNombre.getText().toUpperCase();
+                alias = this.txtAlias.getText().toUpperCase();
                 edad = Integer.parseInt(this.jComboBoxEdades.getSelectedItem().toString());
 
                 Jugador jugador = new Jugador(nombre, alias, edad);
