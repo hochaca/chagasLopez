@@ -17,7 +17,7 @@ public class Partida {
     private Jugador jugadorBlanco;
     private Jugador jugadorNegro;
     private int fichasJBlanco;
-    private int fichasJNegro;
+    private int fichaƒsJNegro;
     private int fichas;
 
     public void RestarFichas(Boolean esJugadorBlanco) {

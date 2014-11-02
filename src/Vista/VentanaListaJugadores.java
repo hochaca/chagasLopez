@@ -22,7 +22,6 @@ public class VentanaListaJugadores extends javax.swing.JFrame {
     public VentanaListaJugadores(Juego juego) {
         initComponents();
         elJuego = juego;
-        
         this.jList1.setListData(elJuego.getListaJugadores().toArray());
     }
 

@@ -7,6 +7,8 @@ package Vista;
 
 import Dominio.Juego;
 import Dominio.Jugador;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -28,18 +30,44 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
 
         }
 
-        Object alias = jComboBoxJugadorBlanco.getSelectedItem().toString();
-        for (int i=0; i< jugadores.size(); i++){
-        if (jugadores.get(i).getAlias().equals(alias))
-            jugadores.remove(jugadores.get(i));
-        } 
-
+//        Object alias = jComboBoxJugadorBlanco.getSelectedItem().toString();
+//        for (int i=0; i< jugadores.size(); i++){
+//        if (jugadores.get(i).getAlias().equals(alias))
+//            jugadores.remove(jugadores.get(i));
+//        } 
         for (int i = 0; i < jugadores.size(); i++) {
             Jugador jugadorBlanco = jugadores.get(i);
             jComboBoxJugadorNegro.addItem(jugadorBlanco.getAlias());
 
         }
-      
+
+        for (int i = 4; i <= 8; i += 2) {
+            String tablero = i + " x " + i;
+            jComboBoxTablero.addItem(tablero);
+        }
+
+        jComboBoxTablero.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                int seleccionTablero = jComboBoxTablero.getSelectedItem().toString().charAt(0) - 49;
+                rellenarComboPanel(seleccionTablero);
+            }
+        }
+        );
+
+        jComboBoxPanel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                int tablero = jComboBoxTablero.getSelectedItem().toString().charAt(0) - 49;
+                int panel = jComboBoxPanel.getSelectedItem().toString().charAt(0) - 49;
+                rellenarComboFichas(tablero, panel);
+            }
+        }
+        );
+
+        //String tablero = jComboBoxTablero.getSelectedItem().toString();
+        /* SELECCIONTABLERO CONVIERTE A STRING LO SELECCIONADO EN EL COMBOBOX DE TABLERO,
+         LUEGO DE ESE STRING TOMA EL PRIMER CARACTER, QUE CORRESPONDE AL LARGO DE TABLERO 
+         Y A ESE CARACTER LE RESTA 49 PARA OBTENER SU VALOR EN INT DE ACUERDO A LA TABLA ASCII
+         */
     }
 
     /**
@@ -84,13 +112,7 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
 
         jLabel4.setText("Panel");
 
-        jComboBoxPanel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel3.setText("Tablero");
-
-        jComboBoxTablero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxFichas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setText("Fichas");
 
@@ -310,4 +332,21 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    //CARGA EL COMBOBOX DE PANEL EN BASE A LO QUE SE SELECCIONE EN EL COMBOBOX DE TABLERO
+    public void rellenarComboPanel(int tablero) {
+        jComboBoxPanel.removeAllItems();
+        for (int i = 2; i < tablero; i += 2) {
+            String panel = i + " x " + i;
+            jComboBoxPanel.addItem(panel);
+        }
+    }
+
+    public void rellenarComboFichas(int tablero, int panel) {
+        jComboBoxFichas.removeAllItems();
+        int fichasMax = (tablero * tablero) + (panel * panel);
+        for (int i = 2; i <= fichasMax; i += 2) {
+            jComboBoxFichas.addItem(i);
+        }
+    }
 }
