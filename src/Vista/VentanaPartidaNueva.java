@@ -23,7 +23,7 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
     public VentanaPartidaNueva(Juego juego) {
         initComponents();
 
-        ArrayList<Jugador> jugadores = juego.getListaJugadores();
+        final ArrayList<Jugador> jugadores = juego.getListaJugadores();
         for (int i = 0; i < jugadores.size(); i++) {
             Jugador jugadorBlanco = jugadores.get(i);
             jComboBoxJugadorBlanco.addItem(jugadorBlanco.getAlias());
@@ -35,6 +35,15 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
 //        if (jugadores.get(i).getAlias().equals(alias))
 //            jugadores.remove(jugadores.get(i));
 //        } 
+        
+        jComboBoxJugadorBlanco.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent arg0){
+              String jugadorBlanco=jComboBoxJugadorBlanco.getSelectedItem().toString();
+              rellenarComboJugadorNegro(jugadorBlanco, jugadores);
+           } 
+        });
+        
+        
         for (int i = 0; i < jugadores.size(); i++) {
             Jugador jugadorBlanco = jugadores.get(i);
             jComboBoxJugadorNegro.addItem(jugadorBlanco.getAlias());
@@ -51,13 +60,16 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
                 int seleccionTablero = jComboBoxTablero.getSelectedItem().toString().charAt(0) - 49;
                 rellenarComboPanel(seleccionTablero);
             }
+            
+            
         }
+             
         );
 
         jComboBoxPanel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
-                int tablero = jComboBoxTablero.getSelectedItem().toString().charAt(0) - 49;
-                int panel = jComboBoxPanel.getSelectedItem().toString().charAt(0) - 49;
+                int tablero = jComboBoxTablero.getSelectedItem().toString().charAt(0) - 48;
+                int panel = jComboBoxPanel.getSelectedItem().toString().charAt(0) - 48;
                 rellenarComboFichas(tablero, panel);
             }
         }
@@ -219,6 +231,11 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
         });
 
         jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Nueva Partida");
 
@@ -228,14 +245,15 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(97, 97, 97)
-                            .addComponent(jButton2)
-                            .addGap(40, 40, 40)
-                            .addComponent(jButtonJugar)
-                            .addGap(13, 13, 13)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(40, 40, 40)
+                                .addComponent(jButtonJugar)
+                                .addGap(13, 13, 13))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,6 +293,11 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,9 +367,22 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
 
     public void rellenarComboFichas(int tablero, int panel) {
         jComboBoxFichas.removeAllItems();
+       if (panel<0){ 
         int fichasMax = (tablero * tablero) + (panel * panel);
         for (int i = 2; i <= fichasMax; i += 2) {
             jComboBoxFichas.addItem(i);
+        }
+    }
+    }
+    
+    public void rellenarComboJugadorNegro(String jBlanco, ArrayList<Jugador> jugadores){
+
+        jComboBoxJugadorNegro.removeAllItems();
+        for(int i=0; i<jugadores.size();i++){
+            Jugador jugador=jugadores.get(i);
+            if(!jugador.getAlias().equals(jBlanco)){
+                jComboBoxJugadorNegro.addItem(jugador.getAlias());
+            }
         }
     }
 }
