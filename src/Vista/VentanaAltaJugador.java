@@ -17,7 +17,6 @@ public class VentanaAltaJugador extends javax.swing.JFrame {
 
     //Sistema para acceder al dominio
     Juego elJuego;
-    
 
     /**
      * Creates new form VentanaAltaJugador
@@ -25,9 +24,9 @@ public class VentanaAltaJugador extends javax.swing.JFrame {
     public VentanaAltaJugador(Juego juego) {
         initComponents();
         elJuego = juego;
-      for (int i=13; i<=99; i++){
-        jComboBoxEdades.addItem(i);
-      }
+        for (int i = 13; i <= 99; i++) {
+            jComboBoxEdades.addItem(i);
+        }
     }
 
     /**
@@ -39,45 +38,54 @@ public class VentanaAltaJugador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        label1 = new java.awt.Label();
+        jLabel5 = new javax.swing.JLabel();
+        jLabelAlias = new javax.swing.JLabel();
+        jLabelNombre = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtAlias = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonAgregarJugadores = new javax.swing.JButton();
+        jButtonVolverRegistroJugador = new javax.swing.JButton();
         lblMensaje = new javax.swing.JLabel();
         jComboBoxEdades = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
+        jLabelNombreVacio = new javax.swing.JLabel();
+        jLabelAliasVacio = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        label1.setText("label1");
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel1.setText("Alias");
+        jLabel5.setText("jLabel5");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel2.setText("Nombre");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabelAlias.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabelAlias.setText("Alias");
+
+        jLabelNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabelNombre.setText("Nombre");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel3.setText("Edad");
 
         txtNombre.setToolTipText("");
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAgregarJugadores.setText("Registrar");
+        jButtonAgregarJugadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAgregarJugadoresActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVolverRegistroJugador.setText("Volver");
+        jButtonVolverRegistroJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonVolverRegistroJugadorActionPerformed(evt);
             }
         });
 
         lblMensaje.setForeground(new java.awt.Color(255, 0, 0));
+        lblMensaje.setText("mmmm");
 
         jComboBoxEdades.setFont(new java.awt.Font("Helvetica Neue", 0, 13)); // NOI18N
         jComboBoxEdades.addActionListener(new java.awt.event.ActionListener() {
@@ -88,77 +96,92 @@ public class VentanaAltaJugador extends javax.swing.JFrame {
 
         jLabel4.setText("Registro de Jugador");
 
+        jLabelNombreVacio.setForeground(new java.awt.Color(255, 0, 0));
+
+        jLabelAliasVacio.setBackground(new java.awt.Color(255, 0, 0));
+        jLabelAliasVacio.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtAlias)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBoxEdades, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMensaje)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabelAlias)
+                            .addComponent(jLabelNombre)
+                            .addComponent(lblMensaje)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(126, 126, 126)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAlias, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelAliasVacio)
+                                            .addComponent(jComboBoxEdades, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabelNombreVacio))))))
+                .addContainerGap(110, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(304, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonVolverRegistroJugador)
                 .addGap(46, 46, 46)
-                .addComponent(jButton1)
+                .addComponent(jButtonAgregarJugadores)
                 .addGap(34, 34, 34))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel4)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelNombreVacio, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblMensaje)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBoxEdades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelAliasVacio)
+                        .addGap(16, 16, 16)
+                        .addComponent(jComboBoxEdades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelAlias)
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel3)))
+                .addGap(33, 33, 33)
+                .addComponent(lblMensaje)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonAgregarJugadores)
+                    .addComponent(jButtonVolverRegistroJugador))
                 .addGap(50, 50, 50))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonAgregarJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarJugadoresActionPerformed
         this.lblMensaje.setText("");
         String nombre = "";
         String alias = "";
-        int edad = -1;
-
+        int edad = 0;
+boolean nombreVacio=this.txtNombre.getText().isEmpty();
+boolean aliasVacio=this.txtAlias.getText().isEmpty();
         try {
-            if (!this.txtNombre.getText().isEmpty() && !this.txtAlias.getText().isEmpty()) {
+
+            if (!nombreVacio && !aliasVacio) {
                 nombre = this.txtNombre.getText().toUpperCase();
                 alias = this.txtAlias.getText().toUpperCase();
                 edad = Integer.parseInt(this.jComboBoxEdades.getSelectedItem().toString());
@@ -173,38 +196,66 @@ public class VentanaAltaJugador extends javax.swing.JFrame {
                     this.txtNombre.setText("");
                     this.txtAlias.setText("");
                     this.lblMensaje.setText("");
-                    this.lblMensaje.setBackground(Color.green);
+                    this.lblMensaje.setForeground(Color.green);
                     this.lblMensaje.setText("SE INGRESO CORRECTAMENTE");
+                   // this.dispose();
+                   // boolean agregarMas= chckboxAgregarMasJugadores.addItemListener(null);
+
                 }
             } else {
-                this.lblMensaje.setBackground(Color.red);
-                this.lblMensaje.setText("DEBE COMPLETAR TODO LOS CAMPOS");
+//                 this.lblMensaje.setBackground(Color.red);
+//                this.lblMensaje.setText("DEBE COMPLETAR TODO LOS CAMPOS"); 
+//               
+             
+              
+                if (nombreVacio) {
+                    this.jLabelNombreVacio.setText("");
+                    this.jLabelNombreVacio.setBackground(Color.red);
+                    this.jLabelNombreVacio.setText("Por favor ingrese su nombre");
+                   
+
+                }else{
+                this.jLabelNombreVacio.setText("");
             }
+                if (aliasVacio) {
+                    this.jLabelAliasVacio.setText("");
+                    this.jLabelAliasVacio.setBackground(Color.red);
+                    this.jLabelAliasVacio.setText("Por Favor Ingrese su alias");
+                }else{
+                    this.jLabelAliasVacio.setText("");
+                }
+
+            }
+            
         } catch (Exception e) {
             this.lblMensaje.setBackground(Color.red);
-            this.lblMensaje.setText("ALGUNO DE LOS CAMPOS TIENE ERRORES");
+            this.lblMensaje.setText("No se ha podido registrar el jugado, intente nuevamente");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonAgregarJugadoresActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonVolverRegistroJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverRegistroJugadorActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonVolverRegistroJugadorActionPerformed
 
     private void jComboBoxEdadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEdadesActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jComboBoxEdadesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonAgregarJugadores;
+    private javax.swing.JButton jButtonVolverRegistroJugador;
     private javax.swing.JComboBox jComboBoxEdades;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelAlias;
+    private javax.swing.JLabel jLabelAliasVacio;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelNombreVacio;
+    private java.awt.Label label1;
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JTextField txtAlias;
     private javax.swing.JTextField txtNombre;
