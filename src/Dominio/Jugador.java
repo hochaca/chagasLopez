@@ -6,11 +6,13 @@
 
 package Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Santilo
  */
-public class Jugador implements Comparable<Jugador>{
+public class Jugador implements Comparable<Jugador>, Serializable{
     
     private String Nombre;
     private int Edad;

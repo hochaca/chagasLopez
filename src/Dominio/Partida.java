@@ -6,11 +6,13 @@
 
 package Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Santilo
  */
-public class Partida {
+public class Partida implements Serializable{
     private Tablero tablero;
     private Panel panel;
     private boolean panelActivo;

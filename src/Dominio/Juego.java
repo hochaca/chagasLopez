@@ -6,9 +6,10 @@
 
 package Dominio;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Juego {
+public class Juego implements Serializable{
 
     
     //################ NUEVOS METODOS EN SISTEMA #########################

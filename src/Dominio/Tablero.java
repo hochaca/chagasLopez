@@ -6,11 +6,13 @@
 
 package Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Santilo
  */
-public class Tablero {
+public class Tablero implements Serializable{
     private char matriz[][];
 
     public Tablero()

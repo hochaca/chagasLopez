@@ -6,11 +6,13 @@
 
 package Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Santilo
  */
-public class Panel {
+public class Panel implements Serializable{
     private char[][] Matriz;
     private int posFilaInicial;
     private int posColumnaInicial;
