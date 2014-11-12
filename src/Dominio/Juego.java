@@ -3,25 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Dominio;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import static java.lang.System.out;
 import java.util.*;
 
-public class Juego implements Serializable{
+public class Juego implements Serializable {
 
     
-    //################ NUEVOS METODOS EN SISTEMA #########################
+
+
     
-    public ArrayList<Jugador> ListarJugadores(){
+
+    //################ NUEVOS METODOS EN SISTEMA #########################
+    public ArrayList<Jugador> ListarJugadores() {
         ArrayList<Jugador> aux = this.getListaJugadores();
         Collections.sort(aux);
         return aux;
     }
-    
+
     //################################################33
-    
     private ArrayList<Jugador> listaJugadores;
     private ArrayList<Partida> listaPartidas;
 
@@ -67,6 +72,7 @@ public class Juego implements Serializable{
 
         return partida.isPanelActivo();
     }
+
     //Agrega letra al tablero.
     public void AgregarLetraATablero(Partida partida, int fila, int columna, Boolean esJugadorBlanco) {
         char[][] matriz = partida.getTablero().getMatriz();
@@ -76,10 +82,12 @@ public class Juego implements Serializable{
             matriz[fila][columna] = 'N';
         }
     }
+
     //Restar fichas a jugador.
     public void RestarFichas(Partida partida, Boolean esJugadorBlanco) {
         partida.RestarFichas(esJugadorBlanco);
     }
+
     //Devuelve las fichas de un jugador.
     public int FichasJugador(Partida partida, Boolean esJugadorBlanco) {
         if (esJugadorBlanco) {
@@ -88,11 +96,13 @@ public class Juego implements Serializable{
             return partida.getFichasJNegro();
         }
     }
+
     //Asigna fichas a jugadores.
     public void AsignarFichasAJugadores(Partida partida, int cantFichas) {
         partida.setFichasJBlanco(cantFichas);
         partida.setFichasJNegro(cantFichas);
     }
+
     //Agrega una letra a la matriz.
     public void AgregarLetraAPanel(Partida partida, int fila, int columna, Boolean esJugadorBlanco) {
         char[][] panel = partida.getPanel().getMatriz();
@@ -105,6 +115,7 @@ public class Juego implements Serializable{
             panel[fila - posPanelFila][columna - posPanelColumna] = 'N';
         }
     }
+
     //Verifica si termino la partida, si los dos se quedaron sin fichas.
     public Boolean TerminoPartida(Partida partida) {
         Boolean result = false;
@@ -114,6 +125,7 @@ public class Juego implements Serializable{
         }
         return result;
     }
+
     //Mueve el panel.
     public void MoverPanel(Partida partida, int fila, int col) {
 
@@ -121,6 +133,7 @@ public class Juego implements Serializable{
         partida.getPanel().setPosColumnaInicial(partida.getPanel().getPosColumnaInicial() + col);
 
     }
+
     //Devuelve el jugador que gano, osea el que tiene mas fichas visibles.
     public int JugadorGanador(char[][] matriz) {
         int result = 0;
@@ -152,6 +165,7 @@ public class Juego implements Serializable{
 
         return result;
     }
+
     //Suma partidas ganadas y jugadas a los jugadores, cuando abandona o termina la partida.
     public void SumarPartidasJugadasYGanadas(Partida partida, Boolean esJugadorBlanco, Boolean empate) {
         if (!empate) {
@@ -177,6 +191,7 @@ public class Juego implements Serializable{
             this.AgregarLetraATablero(partida, fila, columna, esJugadorBlanco);
         }
     }
+
     //Obtiene el valor de una celda del panel.
     public char ObtenerValorCeldaPanel(Partida partida, int fila, int columna) {
         char[][] panel = partida.getPanel().getMatriz();
@@ -185,6 +200,7 @@ public class Juego implements Serializable{
 
         return panel[fila - posPanelFila][columna - posPanelColumna];
     }
+
     //Modifica las letras donde se cumplio alguna simetria, por la letra del jugador que esta jugando.
     public void CambiarLetrasDeSimetria(Partida partida, char[][] simetrias, Boolean esJugaroBlanco) {
 
@@ -198,6 +214,7 @@ public class Juego implements Serializable{
             }
         }
     }
+
     //devuelve si la posicion ingresada pertenece al panel.
     public Boolean posicionEnPanel(Partida partida, int posFila, int posCol) {
 
@@ -216,6 +233,7 @@ public class Juego implements Serializable{
 
         return pertenece;
     }
+
     //Pone como activo al panel.
     public void AsignarPanel(Partida partida) {
         partida.setPanelActivo(Boolean.TRUE);
