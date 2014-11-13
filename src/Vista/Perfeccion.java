@@ -18,6 +18,7 @@ public class Perfeccion {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
 
@@ -25,9 +26,9 @@ public class Perfeccion {
         Inicio inicio = new Inicio(juego);
         inicio.setVisible(true);
 
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("salida"));
-        out.writeObject(juego);
-        out.close();
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("juegoArchivo"))) {
+            out.writeObject(juego);
+        }
 
     }
 
