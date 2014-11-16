@@ -43,7 +43,7 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
            } 
         });
         
-        
+        //comm
         for (int i = 0; i < jugadores.size(); i++) {
             Jugador jugadorBlanco = jugadores.get(i);
             jComboBoxJugadorNegro.addItem(jugadorBlanco.getAlias());
