@@ -102,7 +102,16 @@ public class Juego implements Serializable {
         partida.setFichasJBlanco(cantFichas);
         partida.setFichasJNegro(cantFichas);
     }
-
+public Jugador BuscarJugadorPorAlias(String alias){
+    Jugador encontrado = null;
+    for(int i=0; i<this.ListarJugadores().size(); i++){
+    if(this.ListarJugadores().get(i).getAlias().equals(alias)){
+        encontrado=this.listaJugadores.get(i);
+    }    
+    }
+    return encontrado;
+}
+        
     //Agrega una letra a la matriz.
     public void AgregarLetraAPanel(Partida partida, int fila, int columna, Boolean esJugadorBlanco) {
         char[][] panel = partida.getPanel().getMatriz();

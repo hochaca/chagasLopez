@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Dominio;
 
+import java.awt.Color;
 import java.io.Serializable;
 
 /**
  *
  * @author Santilo
  */
-public class Partida implements Serializable{
+public class Partida implements Serializable {
+
     private Tablero tablero;
     private Panel panel;
     private boolean panelActivo;
@@ -21,6 +22,8 @@ public class Partida implements Serializable{
     private int fichasJBlanco;
     private int fichasJNegro;
     private int fichas;
+    private Color colorJugadorBlanco;
+    private Color colorJugadorNegro;
 
     public void RestarFichas(Boolean esJugadorBlanco) {
         if (esJugadorBlanco) {
@@ -43,12 +46,13 @@ public class Partida implements Serializable{
     public void setPanelActivo(Boolean panelActivo) {
         this.panelActivo = panelActivo;
     }
-    
-    public boolean getPanelActivo(){
+
+    public boolean getPanelActivo() {
         return this.panelActivo;
     }
-    public void setPanelActivo(){
-        this.panelActivo=true;
+
+    public void setPanelActivo() {
+        this.panelActivo = true;
     }
 
     public Partida() {
@@ -110,6 +114,18 @@ public class Partida implements Serializable{
     public int getFichasJNegro() {
         return this.fichasJNegro;
     }
+    public void setColorJugadorBlanco(Color unColor){
+        this.colorJugadorBlanco=unColor;
+    }
+    public Color getColorJugadorBlanco(){
+        return this.colorJugadorBlanco;
+    }
+    public void setColorJugadorNegro(Color unColor){
+        this.colorJugadorNegro=unColor;
+    }
+    public Color getColorJugadorNegro(){
+       return this.colorJugadorNegro;
+    }
 
     public Partida(Jugador jugadorBlanco, Jugador jugadorNegro, int fichas, Tablero tablero, Panel panel) {
         this.setFichas(fichas);
@@ -119,5 +135,7 @@ public class Partida implements Serializable{
         this.setJugadorNegro(jugadorNegro);
         this.setPanel(panel);
         this.setTablero(tablero);
+        this.setColorJugadorBlanco(colorJugadorNegro);
+        this.setColorJugadorNegro(colorJugadorNegro);
     }
 }
