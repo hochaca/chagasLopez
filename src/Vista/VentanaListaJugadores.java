@@ -22,6 +22,7 @@ public class VentanaListaJugadores extends javax.swing.JFrame {
     public VentanaListaJugadores(Juego juego) {
         initComponents();
         elJuego = juego;
+        
         this.jList1.setListData(elJuego.getListaJugadores().toArray());
     }
 
@@ -63,7 +64,7 @@ public class VentanaListaJugadores extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 473, Short.MAX_VALUE)
+                        .addGap(0, 315, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
@@ -74,7 +75,7 @@ public class VentanaListaJugadores extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         pack();

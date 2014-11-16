@@ -7,7 +7,6 @@
 package Dominio;
 
 import java.io.Serializable;
-
 /**
  *
  * @author Santilo
