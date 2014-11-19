@@ -19,6 +19,10 @@ public class Jugador implements Comparable<Jugador>, Serializable{
     private int PartidasJugadas;
     private int PartidasGanadas;
 
+    public Jugador() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
@@ -87,7 +91,7 @@ public class Jugador implements Comparable<Jugador>, Serializable{
 
     @Override
     public String toString() {
-        return ("Nombre: " + this.getNombre()+ " Edad: " + this.getEdad()+ " Jugadas: " + this.getPartidasJugadas()+ " Ganadas: " + this.getPartidasGanadas());
+        return ("Nombre: " + this.getNombre()+ " Alias: " + this.getAlias()  +" Edad: " + this.getEdad()+ " Jugadas: " + this.getPartidasJugadas()+ " Ganadas: " + this.getPartidasGanadas());
     }
 
     @Override

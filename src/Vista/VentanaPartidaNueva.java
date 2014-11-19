@@ -14,6 +14,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JColorChooser;
 
 /**
  *
@@ -33,19 +34,28 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
         final ArrayList<Jugador> jugadores = juego.getListaJugadores();
         Color colorJugadorBlanco = (Color.white);
         Color colorJugadorNegro = (Color.black);
-        for (int i = 0; i < jugadores.size(); i++) {
-            Jugador jugadorBlanco = jugadores.get(i);
-            jComboBoxJugadorBlanco.addItem(jugadorBlanco.getAlias());
 
-        }
+        this.jComboBoxJugadorBlanco.addItem("Seleccione un Jugador");
+        this.rellenarComboJugadorBlanco(jugadores);
 
+//        this.jComboBoxJugadorBlanco.addActionListener(new ActionListener() {
+//            public void actionPerfomed(ActionEvent event) {
+//                for (int i = 0; i < jugadores.size(); i++) {
+//                    Jugador jugadorBlanco = jugadores.get(i);
+//                    jComboBoxJugadorBlanco.addItem(jugadorBlanco.getAlias());
+//
+//                }
+//            }
+//        });
 //        Object alias = jComboBoxJugadorBlanco.getSelectedItem().toString();
 //        for (int i=0; i< jugadores.size(); i++){
 //        if (jugadores.get(i).getAlias().equals(alias))
 //            jugadores.remove(jugadores.get(i));
 //        } 
         jComboBoxJugadorBlanco.addActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent arg0) {
+
                 String jugadorBlanco = jComboBoxJugadorBlanco.getSelectedItem().toString();
                 rellenarComboJugadorNegro(jugadorBlanco, jugadores);
             }
@@ -145,7 +155,7 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel4.setText("Panel");
 
@@ -327,18 +337,18 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
                         .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelMensajes)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton2)
-                                    .addGap(40, 40, 40)
-                                    .addComponent(jButtonJugar)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelMensajes)
+                            .addComponent(jButton2))
+                        .addGap(706, 706, 706)
+                        .addComponent(jButtonJugar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(97, 97, 97)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,7 +361,7 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(labelMensajes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonJugar)
                     .addComponent(jButton2))
@@ -379,8 +389,9 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
 
         aliasBlanco = jComboBoxJugadorBlanco.getSelectedItem().toString();
         aliasNegro = jComboBoxJugadorNegro.getSelectedItem().toString();
-
+        this.labelTablero.setText("Por favor seleccione el tablero");
         try {
+
             largoTablero = jComboBoxTablero.getSelectedItem().toString().charAt(0) - 48;
         } catch (Exception e) {
             this.labelTablero.setForeground(Color.red);
@@ -391,12 +402,14 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
 
             try {
                 largoPanel = jComboBoxPanel.getSelectedItem().toString().charAt(0) - 48;
+                this.labelPanel.setText(null);
             } catch (Exception e) {
                 this.labelPanel.setForeground(Color.red);
                 this.labelPanel.setText("Por favor seleccione  el Panel");
             }
 
         }
+
         if (aliasBlanco.isEmpty()) {
             this.labelJugadorBlanco.setForeground(Color.red);
             this.labelJugadorBlanco.setText("Por favor seleccione el jugador blanco");
@@ -414,9 +427,17 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
 
         try {
             fichas = (Integer) jComboBoxFichas.getSelectedItem() * 2;
+            this.labelFichas.setText(null);
         } catch (Exception e) {
             this.labelFichas.setForeground(Color.red);
             this.labelFichas.setText("Por favor seleccione la cantidad de fichas");
+        }
+        if (jugadorBlanco.equals(jugadorNegro)) {
+            this.labelJugadorNegro.setForeground(Color.RED);
+            this.labelJugadorNegro.setText("Por favor seleccione un jugador diferente");
+        } else {
+            this.labelJugadorNegro.setText(null);
+
         }
 
         tablero = new Tablero(largoTablero);
@@ -430,8 +451,8 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
         partida.setFichasJNegro(fichas);
         partida.setColorJugadorBlanco(colorJugadorBlanco);
         partida.setColorJugadorNegro(colorJugadorNegro);
-        VentanaJuego juego = new VentanaJuego(miJuego, partida);
-        juego.setVisible(true);
+        // VentanaJuego juego = new VentanaJuego(miJuego, partida);
+        //juego.setVisible(true);
     }//GEN-LAST:event_jButtonJugarActionPerformed
 
     private void jComboBoxJugadorBlancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJugadorBlancoActionPerformed
@@ -452,10 +473,15 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
     private void botonColorJBlancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonColorJBlancoActionPerformed
         // TODO add your handling code here:
 
+//AGREGAR COLORES PARA EL BOTON BALNCO ACA
+        Color colorBlanco = JColorChooser.showDialog(null, "Elija un color", Color.blue);
+
     }//GEN-LAST:event_botonColorJBlancoActionPerformed
 
     private void botonColorJugadorNegroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonColorJugadorNegroActionPerformed
         // TODO add your handling code here:
+       // AGREGAR COLORES PARA EL JUGADOR NEGRO ACA
+        Color colorNegro = JColorChooser.showDialog(null, "Elija un color", Color.yellow);
     }//GEN-LAST:event_botonColorJugadorNegroActionPerformed
 
     private void jComboBoxFichasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxFichasActionPerformed
@@ -554,6 +580,15 @@ public class VentanaPartidaNueva extends javax.swing.JFrame {
             if (!jugador.getAlias().equals(jBlanco)) {
                 jComboBoxJugadorNegro.addItem(jugador.getAlias());
             }
+        }
+    }
+
+    public void rellenarComboJugadorBlanco(ArrayList<Jugador> jugadores) {
+        this.jComboBoxJugadorBlanco.removeAllItems();
+        for (int i = 0; i < jugadores.size(); i++) {
+            String jugadorBlanco = jugadores.get(i).getAlias();
+            jComboBoxJugadorBlanco.addItem(jugadorBlanco);
+
         }
     }
 }

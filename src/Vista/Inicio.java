@@ -40,9 +40,10 @@ public class Inicio extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        MenuJugadores = new javax.swing.JMenu();
+        listarJugadores = new javax.swing.JMenuItem();
+        NuevoJugador = new javax.swing.JMenuItem();
+        cargarJugadorArchivo = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
 
@@ -68,25 +69,33 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu1.setText("Jugadores");
+        MenuJugadores.setText("Jugadores");
 
-        jMenuItem2.setText("Listar Jugadores");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        listarJugadores.setText("Listar Jugadores");
+        listarJugadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                listarJugadoresActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        MenuJugadores.add(listarJugadores);
 
-        jMenuItem3.setText("Nuevo Jugador");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        NuevoJugador.setText("Nuevo Jugador");
+        NuevoJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                NuevoJugadorActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        MenuJugadores.add(NuevoJugador);
 
-        jMenuBar1.add(jMenu1);
+        cargarJugadorArchivo.setText("Cargar desde archivo");
+        cargarJugadorArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarJugadorArchivoActionPerformed(evt);
+            }
+        });
+        MenuJugadores.add(cargarJugadorArchivo);
+
+        jMenuBar1.add(MenuJugadores);
 
         jMenu3.setText("Salir");
 
@@ -120,31 +129,46 @@ public class Inicio extends javax.swing.JFrame {
 //        VentanaJuego ventanaJuego =  new VentanaJuego(elJuego);
 //        ventanaJuego.setVisible(true);
 //        
+        if(elJuego.getListaJugadores().size()<2){
+          VentanaMensajes ventanaMensajes= new VentanaMensajes();
+          ventanaMensajes.MostrarMensaje("Por favor registre al menos 2 jugadores");
+          ventanaMensajes.setAlwaysOnTop(true);
+          ventanaMensajes.setVisible(true);
+        }else{
         VentanaPartidaNueva ventanaPartida= new VentanaPartidaNueva(elJuego);
         ventanaPartida.setVisible(true);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void listarJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarJugadoresActionPerformed
         // TODO add your handling code here:
         VentanaListaJugadores ventanaListaJugadores =  new VentanaListaJugadores(elJuego);
         ventanaListaJugadores.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_listarJugadoresActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void NuevoJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoJugadorActionPerformed
         // TODO add your handling code here:
         VentanaAltaJugador ventanaAltaJugador =  new VentanaAltaJugador(elJuego);
         ventanaAltaJugador.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_NuevoJugadorActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void cargarJugadorArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarJugadorArchivoActionPerformed
+        // TODO add your handling code here:
+        VentanaJugadorDesdeArchivo jugadorArchivo= new VentanaJugadorDesdeArchivo(elJuego);
+        jugadorArchivo.setVisible(true);
+    }//GEN-LAST:event_cargarJugadorArchivoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu MenuJugadores;
+    private javax.swing.JMenuItem NuevoJugador;
+    private javax.swing.JMenuItem cargarJugadorArchivo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -152,8 +176,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem listarJugadores;
     // End of variables declaration//GEN-END:variables
 }

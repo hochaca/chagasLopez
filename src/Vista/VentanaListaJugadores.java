@@ -7,6 +7,9 @@
 package Vista;
 
 import Dominio.Juego;
+import Dominio.Jugador;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -22,8 +25,9 @@ public class VentanaListaJugadores extends javax.swing.JFrame {
     public VentanaListaJugadores(Juego juego) {
         initComponents();
         elJuego = juego;
-        
-        this.jList1.setListData(elJuego.getListaJugadores().toArray());
+        ArrayList<Jugador> aux=elJuego.getListaJugadores();
+       Collections.sort(aux);
+        this.jList1.setListData(aux.toArray());
     }
 
     /**
@@ -39,7 +43,7 @@ public class VentanaListaJugadores extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
