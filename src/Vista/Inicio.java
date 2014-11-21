@@ -3,10 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Vista;
 
 import Dominio.Juego;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,12 +23,44 @@ public class Inicio extends javax.swing.JFrame {
 
     //Sistema para acceder al dominio
     Juego elJuego;
+    private File salida = null;
+    private ObjectOutputStream out = null;
+    private boolean salidaExiste;
+    private VentanaMensajes mensaje = new VentanaMensajes();
+
     /**
      * Creates new form Inicio
      */
     public Inicio(Juego juego) {
         initComponents();
-        elJuego = juego;
+
+//MOVER EL GUARDADO DE LA SALIDA A LA OPCION DE SALIDA
+        salida = new File("salida");
+        salidaExiste = salida.exists();
+
+        if (salidaExiste) {
+
+            ObjectInputStream in = null;
+            try {
+                in = new ObjectInputStream(new FileInputStream("salida"));
+                try {
+                    elJuego = (Juego) in.readObject();
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Perfeccion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    in.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            elJuego = juego;
+        }
+
     }
 
     /**
@@ -44,7 +83,7 @@ public class Inicio extends javax.swing.JFrame {
         listarJugadores = new javax.swing.JMenuItem();
         NuevoJugador = new javax.swing.JMenuItem();
         cargarJugadorArchivo = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        menuSalida = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
 
         jMenu4.setText("File");
@@ -97,7 +136,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuJugadores);
 
-        jMenu3.setText("Salir");
+        menuSalida.setText("Salir");
 
         jMenuItem4.setText("Salir");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -105,9 +144,9 @@ public class Inicio extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem4);
+        menuSalida.add(jMenuItem4);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(menuSalida);
 
         setJMenuBar(jMenuBar1);
 
@@ -129,37 +168,47 @@ public class Inicio extends javax.swing.JFrame {
 //        VentanaJuego ventanaJuego =  new VentanaJuego(elJuego);
 //        ventanaJuego.setVisible(true);
 //        
-        if(elJuego.getListaJugadores().size()<2){
-          VentanaMensajes ventanaMensajes= new VentanaMensajes();
-          ventanaMensajes.MostrarMensaje("Por favor registre al menos 2 jugadores");
-          ventanaMensajes.setAlwaysOnTop(true);
-          ventanaMensajes.setVisible(true);
-        }else{
-        VentanaPartidaNueva ventanaPartida= new VentanaPartidaNueva(elJuego);
-        ventanaPartida.setVisible(true);
+        if (elJuego.getListaJugadores().size() < 2) {
+            VentanaMensajes ventanaMensajes = new VentanaMensajes();
+            ventanaMensajes.MostrarMensaje("Por favor registre al menos 2 jugadores");
+            ventanaMensajes.setAlwaysOnTop(true);
+            ventanaMensajes.setVisible(true);
+        } else {
+            VentanaPartidaNueva ventanaPartida = new VentanaPartidaNueva(elJuego);
+            ventanaPartida.setVisible(true);
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void listarJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarJugadoresActionPerformed
         // TODO add your handling code here:
-        VentanaListaJugadores ventanaListaJugadores =  new VentanaListaJugadores(elJuego);
+        VentanaListaJugadores ventanaListaJugadores = new VentanaListaJugadores(elJuego);
         ventanaListaJugadores.setVisible(true);
     }//GEN-LAST:event_listarJugadoresActionPerformed
 
     private void NuevoJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoJugadorActionPerformed
         // TODO add your handling code here:
-        VentanaAltaJugador ventanaAltaJugador =  new VentanaAltaJugador(elJuego);
+        VentanaAltaJugador ventanaAltaJugador = new VentanaAltaJugador(elJuego);
         ventanaAltaJugador.setVisible(true);
     }//GEN-LAST:event_NuevoJugadorActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        if (!salidaExiste) {
+            try {
+                out = new ObjectOutputStream(new FileOutputStream("salida"));
+                out.writeObject(elJuego);
+                out.flush();
+                out.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         System.exit(0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void cargarJugadorArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarJugadorArchivoActionPerformed
         // TODO add your handling code here:
-        VentanaJugadorDesdeArchivo jugadorArchivo= new VentanaJugadorDesdeArchivo(elJuego);
+        VentanaJugadorDesdeArchivo jugadorArchivo = new VentanaJugadorDesdeArchivo(elJuego);
         jugadorArchivo.setVisible(true);
     }//GEN-LAST:event_cargarJugadorArchivoActionPerformed
 
@@ -170,7 +219,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem cargarJugadorArchivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
@@ -178,5 +226,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem listarJugadores;
+    private javax.swing.JMenu menuSalida;
     // End of variables declaration//GEN-END:variables
 }

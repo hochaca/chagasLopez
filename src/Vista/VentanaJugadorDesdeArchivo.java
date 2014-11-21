@@ -9,6 +9,10 @@ import Dominio.Juego;
 import Dominio.Jugador;
 import persistencia.ClaseLectura;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
@@ -21,12 +25,13 @@ public class VentanaJugadorDesdeArchivo extends javax.swing.JFrame {
      * Creates new form JugadorDesdeArchivo
      */
     private Juego miJuego;
-    private File archivo;
-
+   
+private File archivo=null;
+       
     public VentanaJugadorDesdeArchivo(Juego juego) {
         miJuego = juego;
         initComponents();
-
+     
     }
 
     /**
@@ -152,15 +157,16 @@ public class VentanaJugadorDesdeArchivo extends javax.swing.JFrame {
     }//GEN-LAST:event_botonVolverActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-int jugadoresPrevios=miJuego.listarJugadores().size();
+        int jugadoresPrevios = miJuego.listarJugadores().size();
         // TODO add your handling code here:
         //this.agregarJugadores(null);
         this.agregarJugadores(archivo);
-        int jugadoresAgregados=miJuego.listarJugadores().size()-jugadoresPrevios;
+        int jugadoresAgregados = miJuego.listarJugadores().size() - jugadoresPrevios;
         VentanaMensajes mensaje = new VentanaMensajes();
-       mensaje.MostrarMensaje("Se agregaron " + jugadoresAgregados + " jugadores");
-       mensaje.setAlwaysOnTop(true);
-       mensaje.setVisible(true);
+        mensaje.MostrarMensaje("Se agregaron " + jugadoresAgregados + " jugadores");
+        mensaje.setAlwaysOnTop(true);
+        mensaje.setVisible(true);
+      
         this.dispose();
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
@@ -178,44 +184,44 @@ int jugadoresPrevios=miJuego.listarJugadores().size();
         // String[] datosJugadores;
 
         while (arch.HayMasLineas()) {
-            try{datosJugador = arch.linea().split("#");
-            nombre = datosJugador[0].toUpperCase();
-            alias = datosJugador[1].toUpperCase();
-            
+            try {
+                datosJugador = arch.linea().split("#");
+                nombre = datosJugador[0].toUpperCase();
+                alias = datosJugador[1].toUpperCase();
+
 //            this.labelNombre.setText("Nombre: " + nombre);
 //            this.labelAlias.setText("Alias: " + alias);
-           // this.labelEdad.setText("Edad: " + datosJugador[2]);
-            try {
-                edad = Integer.parseInt(datosJugador[2]);
-            } catch (Exception e) {
-                edad = 13;
-            }
-            try {
-               
-              
-                yaEsta = false;
-                for (int i = 0; i < miJuego.getListaJugadores().size(); i++) {
-                    Jugador aux = miJuego.getListaJugadores().get(i);
-                    if (aux.getAlias().equals(alias)) {
-                        aux.setEdad(edad);
-                        aux.setNombre(nombre);
-                        yaEsta = true;
+                // this.labelEdad.setText("Edad: " + datosJugador[2]);
+                try {
+                    edad = Integer.parseInt(datosJugador[2]);
+                } catch (Exception e) {
+                    edad = 13;
+                }
+                try {
+
+                    yaEsta = false;
+                    for (int i = 0; i < miJuego.getListaJugadores().size(); i++) {
+                        Jugador aux = miJuego.getListaJugadores().get(i);
+                        if (aux.getAlias().equals(alias)) {
+                            aux.setEdad(edad);
+                            aux.setNombre(nombre);
+                            yaEsta = true;
+                        }
+
+                    }
+                    if (!yaEsta) {
+                        miJuego.agregarJugador(crearJugador(nombre, alias, edad));
                     }
 
-                }
-            if (!yaEsta) {
-                    miJuego.agregarJugador(crearJugador(nombre, alias, edad));
-                }
+                } catch (Exception e) {
 
+                }
             } catch (Exception e) {
-
             }
-        }catch(Exception e){
-            }
-    }
+        }
 
         //this.labelEdad.setText();
-        }
+    }
 
     public static Jugador crearJugador(String nombre, String alias, int edad) {
         Jugador unJugador = new Jugador(nombre, alias, edad);

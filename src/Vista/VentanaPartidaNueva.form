@@ -271,11 +271,13 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelSeleccionJugadores" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jComboBoxJugadorBlanco" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelJugadorBlanco" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="botonColorJBlanco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="mostrarColorJugadorBlanco" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jComboBoxJugadorBlanco" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelJugadorBlanco" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonColorJBlanco" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">

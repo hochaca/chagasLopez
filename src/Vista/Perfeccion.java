@@ -6,6 +6,7 @@
 package Vista;
 
 import Dominio.Juego;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,22 +26,13 @@ public class Perfeccion {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        
+
         Juego juego = new Juego();
         Inicio inicio = new Inicio(juego);
         inicio.setVisible(true);
-        
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("salida"));
-        out.writeObject(juego);
-        out.close();
-        
-       
-        ObjectInputStream in =new ObjectInputStream(new FileInputStream("salida"));
-        try {
-            juego=(Juego)in.readObject();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Perfeccion.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+      
+
     
+    }
+
 }
